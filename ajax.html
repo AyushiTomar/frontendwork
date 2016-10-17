@@ -1,0 +1,49 @@
+<html>
+<head>
+<style>
+table,th,
+{
+	border;2px solid black;
+	border-collapse:collapse;
+	width:800px;
+}
+.heading
+{
+	background:black;
+	color;white;
+}
+</style>
+<script>
+function showdetails(value)
+{
+	if(window.XMLHTTPRequest)
+	{
+		x=new XMLHTTPRequest();
+		x.open('GET','ajax.php?',true);
+		x.send();
+			x.onreadystatechange=function()
+			{
+				if(x.readyState==4 && x.status==200)
+				{
+					msg.innerHTML=x.responseText;
+				}
+			}
+    }
+}
+
+</script>
+</head>
+<body>
+<h2>select</h2>
+<select onchange="showdetails(this.value)">
+<option>test_category_id </option>
+<option>test_category </option>
+<option>time</option>
+<option>created</option>
+<option>modified</option>
+</select><hr>
+<div id="msg">
+<i>detalis will be listed here</i>
+</div>
+</body>
+</html>
