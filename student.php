@@ -1,5 +1,6 @@
 <?php
 include_once("db.php");
+$id=$_POST['$id'];
 $fn=$_POST['fname'];
 $ln=$_POST['lname'];
 $eml=$_POST['mail'];
@@ -11,8 +12,7 @@ $test=$_POST['select'];
 $rs="insert into student(fname,lname,email_id,phone_no,password,test_category,created,modified)
 values('$fn','$ln','$eml','$mob','pwd','$test',now(),now())";
 $result=(mysql_query($rs,$con))or die (mysql_error());
-echo "inserted";
-/*if($result)
+echo "inserted";/*if($result)
 {
 ?>
 <script>
@@ -30,3 +30,4 @@ window.location="student.php";
 <?php }
 */
 ?>
+ 
