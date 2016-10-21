@@ -1,4 +1,7 @@
 <?php
-setcookie("loggedin","val",time()-(120),"/");
+session_start();
+$_SESSION['login_status']==false
+{
 header("location:login.html");
+}
 ?>
