@@ -1,12 +1,43 @@
 <?php
 include_once("db.php");
 
-$a=$_POST['cate'];
-$b=$_POST['ques'];
-$c=$_POST['time'];
-$d=$_POST['inst'];
+$cate=$_POST['cate'];
+$question=$_POST['ques'];
+$time=$_POST['time'];
+$code=$_POST['code'];
+$inst=$_POST['inst'];
 
-$rs="insert into test_category (test_category,no_of_questions,time,created,modified,instructions_for_test ) values ('$a','$b','$c',now(),now(),'$d')";
+if(empty($cate))
+{
+	die("please enter testcategory");
+}
+if(empty($question))
+{
+	die("please enter question");
+}
+if(empty($time))
+{
+	die("please select time");
+}
+
+if(empty($code))
+{
+	die("please enter test secrete code");
+}
+if(empty($inst))
+{
+	die("please enter instructions for test");
+}
+
+
+$rs="insert into test_category (test_category,no_of_questions,time,test_secrete_code,instructions_for_test ,created,modified) values ('$cate','$question','$time','$code','$inst',now(),now())";
 $result=mysql_query($rs,$con)  or die(mysql_error());
-echo"inserted";
+if($result)
+{
+	header('location:add_ques.php');
+}
+else
+{
+  echo "error";
+}
 ?>
