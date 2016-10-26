@@ -45,8 +45,10 @@ include_once("connection.php");
 							</tr>	
 						
 							<tr>
-								<td><input type = "button" value = "Save" name = "submit" id = "submit" onClick "add_data()" style="background:url(http://localhost/wordpress/wp-content/uploads/2016/10/save-e1477299045595-1.jpg) no-repeat;"></td>
+								<td><input type = "submit" value = "Save" name = "save" id = "submit" style="background:url(http://localhost/wordpress/wp-content/uploads/2016/10/save-e1477299045595-1.jpg) no-repeat;"></td>
+								<td><input type = "submit" value = "update" name = "update" id = "update" ></td>
 								<td><input type = "reset" value = "Reset" name = "reset" id = "reset" style="background:url(http://localhost/wordpress/wp-content/uploads/2016/10/save-e1477299045595-1.jpg) no-repeat;"></td>
+
 							</tr>
   						</table>       
   					</div>
@@ -58,9 +60,11 @@ include_once("connection.php");
            
 	</div>
 
-<script>
-	
+
   <?php
+if(isset($_POST['save']))
+{
+$id=$_POST['test_category_id'];	
 $cate=$_POST['test_category'];
 $question=$_POST['no_of_ques'];
 $time=$_POST['time'];
@@ -68,8 +72,19 @@ $code=$_POST['secrete_code'];
 $inst=$_POST['instructions'];
 $rs="insert into test_category (test_category,no_of_questions,time,test_secrete_code,instructions_for_test ,created,modified) values ('$cate','$question','$time','$code','$inst',now(),now())";
 $result=mysqli_query($conn,$rs)or die(mysqli_error($conn));
- ?>
+
+
 }
+elseif(isset($_POST['update']))
+{
+	?>
+<script type="text/javascript">
+	window.location.assign("http://localhost/wordpress/test_category_update/");
+</script>
+<?php
 }
-</script>	
+?>
+
+
  <?php get_footer(); ?>
+
